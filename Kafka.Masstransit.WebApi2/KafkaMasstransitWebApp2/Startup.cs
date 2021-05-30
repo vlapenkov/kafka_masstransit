@@ -1,5 +1,5 @@
-using KafkaMasstransitWebApp1.Events;
-using KafkaMasstransitWebApp1.Handlers;
+using KafkaMasstransitWebApp2.Events;
+using KafkaMasstransitWebApp2.Handlers;
 using MassTransit;
 using MassTransit.KafkaIntegration;
 using Microsoft.AspNetCore.Builder;
@@ -12,7 +12,7 @@ using System;
 using System.Net;
 using System.Reflection;
 
-namespace KafkaMasstransitWebApp1
+namespace KafkaMasstransitWebApp2
 {
     public class Startup
     {
@@ -40,19 +40,19 @@ namespace KafkaMasstransitWebApp1
 
                 x.AddRider(rider =>
                 {
-                    rider.AddConsumer<VideoDeletedEventConsumer>();
-                    rider.AddProducer<VideoCreatedEvent>(nameof(VideoCreatedEvent));
+                    rider.AddConsumer<VideoCreatedEventConsumer>();
+                    rider.AddProducer<VideoDeletedEvent>(nameof(VideoDeletedEvent));
 
                     rider.UsingKafka((context, k) =>
                     {
                         k.Host("localhost:9092");
 
-                        k.TopicEndpoint<VideoDeletedEvent>(nameof(VideoDeletedEvent), GetUniqueName(nameof(VideoDeletedEvent)), e =>
+                        k.TopicEndpoint<VideoCreatedEvent>(nameof(VideoCreatedEvent), GetUniqueName(nameof(VideoCreatedEvent)), e =>
                         {
                             // e.AutoOffsetReset = AutoOffsetReset.Latest;
                             //e.ConcurrencyLimit = 3;
                             e.CheckpointInterval = TimeSpan.FromSeconds(10);
-                            e.ConfigureConsumer<VideoDeletedEventConsumer>(context);
+                            e.ConfigureConsumer<VideoCreatedEventConsumer>(context);
                         });
                     });
                 });

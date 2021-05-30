@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 
 namespace KafkaMasstransitWebApp1.Handlers
 {
-    internal class VideoStatusUpdatedEventConsumer : IConsumer<VideoStatusUpdatedEvent>
+    internal class VideoDeletedEventConsumer : IConsumer<VideoDeletedEvent>
     {
-        public Task Consume(ConsumeContext<VideoStatusUpdatedEvent> context)
+        public Task Consume(ConsumeContext<VideoDeletedEvent> context)
         {
             var message = context.Message.Title;
             return Task.CompletedTask;

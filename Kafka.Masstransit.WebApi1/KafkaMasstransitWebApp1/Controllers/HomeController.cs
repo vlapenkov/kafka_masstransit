@@ -10,9 +10,9 @@ namespace KafkaMasstransitWebApp1.Controllers
     [Route("[controller]")]
     public class WebAppController : ControllerBase
     {
-        private readonly ITopicProducer<VideoStatusUpdatedEvent> _topicProducer;
+        private readonly ITopicProducer<VideoCreatedEvent> _topicProducer;
 
-        public WebAppController(ITopicProducer<VideoStatusUpdatedEvent> topicProducer)
+        public WebAppController(ITopicProducer<VideoCreatedEvent> topicProducer)
         {
             _topicProducer = topicProducer;
         }
@@ -22,11 +22,11 @@ namespace KafkaMasstransitWebApp1.Controllers
         public async Task<IActionResult> PostAsync(string title)
         {
             // Another way to access the _topicProducer
-            // var _topicProducer = HttpContext.RequestServices.GetRequiredService<ITopicProducer<VideoStatusUpdatedEvent>>();
+            // var _topicProducer = HttpContext.RequestServices.GetRequiredService<ITopicProducer<VideoCreatedEvent>>();
 
-            await _topicProducer.Produce(new VideoStatusUpdatedEvent
+            await _topicProducer.Produce(new VideoCreatedEvent
             {
-                Title = title
+                Title = $"{nameof(VideoCreatedEvent)}: {title}"
             });
 
             return Ok(title);

@@ -1,6 +1,6 @@
 ﻿namespace KafkaMasstransitWebApp1.Events
 {
-    public class VideoStatusUpdatedEvent
+    public class VideoDeletedEvent
     {
         public string Title { get; set; }
     }
