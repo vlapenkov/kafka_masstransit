@@ -53,6 +53,12 @@ namespace KafkaMasstransitWebApp1
                             //e.ConcurrencyLimit = 3;
                             e.CheckpointInterval = TimeSpan.FromSeconds(10);
                             e.ConfigureConsumer<VideoDeletedEventConsumer>(context);
+
+                            e.CreateIfMissing(t =>
+                            {
+                                //t.NumPartitions = 2; //number of partitions
+                                //t.ReplicationFactor = 1; //number of replicas
+                            });
                         });
                     });
                 });
