@@ -1,6 +1,7 @@
 using KafkaMasstransitWebApp1.Events;
 using KafkaMasstransitWebApp1.Handlers;
 using MassTransit;
+using MassTransit.KafkaIntegration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -38,6 +39,7 @@ namespace KafkaMasstransitWebApp1
                 x.AddRider(rider =>
                 {
                     rider.AddConsumer<VideoStatusUpdatedEventConsumer>();
+                    rider.AddProducer<VideoStatusUpdatedEvent>(nameof(VideoStatusUpdatedEvent));
 
                     rider.UsingKafka((context, k) =>
                     {
@@ -46,12 +48,15 @@ namespace KafkaMasstransitWebApp1
                         k.TopicEndpoint<VideoStatusUpdatedEvent>(nameof(VideoStatusUpdatedEvent), "g23", e =>
                         {
                             // e.AutoOffsetReset = AutoOffsetReset.Latest;
+                            //e.ConcurrencyLimit = 3;
+                            e.CheckpointInterval = TimeSpan.FromSeconds(10);
                             e.ConfigureConsumer<VideoStatusUpdatedEventConsumer>(context);
                         });
                     });
                 });
             });
-            services.AddMassTransitHostedService();
+
+            services.AddMassTransitHostedService(true);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
