@@ -17,6 +17,11 @@ namespace KafkaMasstransitWebApp1.Controllers
             _topicProducer = topicProducer;
         }
 
+        /// <summary>
+        /// Send create event
+        /// </summary>
+        /// <param name="title"></param>
+        /// <returns></returns>
         [HttpPost("{title}")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         public async Task<IActionResult> PostAsync(string title)

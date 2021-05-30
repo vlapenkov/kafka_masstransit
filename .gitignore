@@ -348,3 +348,5 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+/Kafka.Masstransit.WebApi1/KafkaMasstransitWebApp1/KafkaMasstransitWebApp1.xml
+/Kafka.Masstransit.WebApi2/KafkaMasstransitWebApp2/KafkaMasstransitWebApp2.xml

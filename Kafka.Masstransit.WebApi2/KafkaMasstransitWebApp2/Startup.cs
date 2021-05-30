@@ -30,7 +30,8 @@ namespace KafkaMasstransitWebApp2
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApplication1", Version = "v1" });
+                c.IncludeXmlComments(@"KafkaMasstransitWebApp2.xml");
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApplication2: Send delete event", Version = "v1" });
             });
 
 

@@ -18,7 +18,7 @@ namespace KafkaMasstransitWebApp2.Controllers
         }
 
         /// <summary>
-        /// Delete
+        /// Send delete event
         /// </summary>
         /// <param name="title"></param>
         /// <returns></returns>
