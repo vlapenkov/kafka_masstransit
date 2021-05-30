@@ -31,7 +31,7 @@ namespace KafkaMasstransitWebApp1.Controllers
 
             await _topicProducer.Produce(new VideoCreatedEvent
             {
-                Title = $"{nameof(VideoCreatedEvent)}: {title}"
+                Title = $"{title}"
             });
 
             return Ok(title);
