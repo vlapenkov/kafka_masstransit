@@ -31,7 +31,8 @@ namespace KafkaMasstransitWebApp1.Controllers
 
             await _topicProducer.Produce(new VideoCreatedEvent
             {
-                Title = $"{title}"
+                Title = $"{title}",
+                SomeData = new[] { 1M, 2.55M, 3.75575M, 10, 15.567M }
             });
 
             return Ok(title);

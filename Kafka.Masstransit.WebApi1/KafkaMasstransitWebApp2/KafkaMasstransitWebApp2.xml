@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>KafkaMasstransitWebApp2</name>
+    </assembly>
+    <members>
+        <member name="M:KafkaMasstransitWebApp2.Controllers.WebAppController.PostAsync(System.String)">
+            <summary>
+            Send delete event
+            </summary>
+            <param name="title"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

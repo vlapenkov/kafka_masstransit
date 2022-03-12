@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace KafkaMasstransitWebApp1.Events
+namespace KafkaMasstransitWebApp2.Events
 {
     public record VideoCreatedEvent
     {

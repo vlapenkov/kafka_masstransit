@@ -37,7 +37,8 @@ namespace KafkaMasstransitWebApp2
 
             services.AddMassTransit(x =>
             {
-                x.UsingRabbitMq((context, cfg) => cfg.ConfigureEndpoints(context));
+                //  x.UsingRabbitMq((context, cfg) => cfg.ConfigureEndpoints(context));
+                x.UsingInMemory((context, config) => config.ConfigureEndpoints(context));
 
                 x.AddRider(rider =>
                 {
